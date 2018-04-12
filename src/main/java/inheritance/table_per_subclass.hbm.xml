@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class  table = "EMP_table_per_subclass" name = "inheritance.Employee">
+      
+      <meta attribute = "class-description">
+         This class contains the employee detail. 
+      </meta>
+      
+      <id name = "Id" type = "java.lang.Integer">
+       
+      </id>
+      
+     
+      <property name = "name" type = "string"/>
+      
+      <joined-subclass name = "inheritance.Regular_Emp" extends ="inheritance.Employee" table = "subclass-reg-emp">
+      	<key column = "Id1" />
+      	<property name = "salary" />
+      	<property name = "bonus" />
+      </joined-subclass>	
+      
+      <joined-subclass name = "inheritance.Contract_Emp" extends ="inheritance.Employee" table = "subclass-con-emp">
+      	<key column = "Id2" />
+      	<property name = "pay_per_hour" />
+      	<property name = "contract_duration" />
+      </joined-subclass>	
+      
+   </class>
+</hibernate-mapping>
